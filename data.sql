@@ -103,7 +103,7 @@ INSERT INTO Concert(concert_id, venue_id, name, datetime) VALUES
     (4, 3, 'Mariah Carey - Merry Christmas', '2022-12-11 08:00:00'),
     (5, 2, 'TSO - Elf in Concert', '2022-12-09 07:30:00'),
     (6, 2, 'TSO - Elf in Concert', '2022-12-10 02:30:00'),
-    (7, 2, 'TSO - Elf in Concert', '2022-12-10 07:30:00'),
+    (7, 2, 'TSO - Elf in Concert', '2022-12-10 07:30:00');
 
 INSERT INTO SectionPrice(concert_id, section_id, price) VALUES
     (1, 1, 130),
