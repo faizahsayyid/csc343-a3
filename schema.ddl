@@ -52,7 +52,7 @@ CREATE TABLE Customer (
 CREATE TABLE Purchase (
   purchase_id integer PRIMARY KEY,
   concert_id integer NOT NULL REFERENCES Concert,
-  seat_id  varchar(255)  NOT NULL REFERENCES Seat,
+  seat_id  integer  NOT NULL REFERENCES Seat,
   username varchar(255) NOT NULL REFERENCES Customer,
   datetime timestamp NOT NULL
 );
