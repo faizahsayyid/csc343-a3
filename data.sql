@@ -98,7 +98,7 @@ INSERT INTO Seat(seat_id, section_id, identifier, is_accessible) VALUES
 
 INSERT INTO Concert(concert_id, venue_id, name, datetime) VALUES
 	(1, 1, 'Ron Sexsmith', '2022-12-03 07:30:00'),
-    (2, 1, `Women's Blues Review`, '2022-11-25 08:00:00'),
+    (2, 1, 'Women''s Blues Review', '2022-11-25 08:00:00'),
     (3, 3, 'Mariah Carey - Merry Christmas', '2022-12-09 08:00:00'),
     (4, 3, 'Mariah Carey - Merry Christmas', '2022-12-11 08:00:00'),
     (5, 2, 'TSO - Elf in Concert', '2022-12-09 07:30:00'),
