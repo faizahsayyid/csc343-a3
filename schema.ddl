@@ -24,9 +24,10 @@ CREATE TABLE Section (
 
 CREATE TABLE Seat (
   seat_id integer PRIMARY KEY,
-  identifier varchar(255) PRIMARY KEY,
+  identifier varchar(255) NOT NULL,
   section_id integer NOT NULL REFERENCES Section,
-  is_accessible boolean NOT NULL DEFAULT false
+  is_accessible boolean NOT NULL DEFAULT false,
+  CONSTRAINT unique_seat_identifier_per_section UNIQUE(section_id, identifier)
 );
 
 CREATE TABLE Concert (
