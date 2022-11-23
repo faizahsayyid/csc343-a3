@@ -120,7 +120,7 @@ INSERT INTO SectionPrice(concert_id, section_id, price) VALUES
     (6, 3, 159),
     (7, 3, 159);
 
-INSERT INTO User(username) VALUES
+INSERT INTO Customer(username) VALUES
     ('ahightower'),
     ('d_targaryen'),
     ('cristonc');

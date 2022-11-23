@@ -44,7 +44,7 @@ CREATE TABLE SectionPrice (
   PRIMARY KEY (section_id, concert_id)
 );
 
-CREATE TABLE User (
+CREATE TABLE Customer (
   username varchar(255) PRIMARY KEY
 );
 
@@ -52,7 +52,7 @@ CREATE TABLE Purchase (
   purchase_id integer PRIMARY KEY,
   concert_id integer NOT NULL REFERENCES Concert,
   seat_id  varchar(255)  NOT NULL REFERENCES Seat,
-  username varchar(255) NOT NULL REFERENCES User,
+  username varchar(255) NOT NULL REFERENCES Customer,
   datetime timestamp NOT NULL
 );
 
