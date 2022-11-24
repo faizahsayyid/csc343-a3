@@ -8,7 +8,8 @@ DROP VIEW IF EXISTS
     TotalConcertSale,
     TotalConcertSaleNotNull,
     TotalTicketCount,
-    TotalPercentageSold
+    TotalTicketSoldCount,
+    TotalPercentageSold,
 CASCADE;
 
 -- Define views for your intermediate steps here:
