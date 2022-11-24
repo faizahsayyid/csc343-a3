@@ -17,7 +17,7 @@ CREATE VIEW SeatPrices AS
 
 CREATE VIEW TotalConcertSale AS 
     SELECT c.concert_id, SUM(sp.price) AS "total" FROM Concert c
-        LEFT JOIN SeatPrices ON sp.concert_id = c.concert_id
+        LEFT JOIN SeatPrices sp ON sp.concert_id = c.concert_id
         GROUP BY c.concert_id;
 
 -- OUTPUT
