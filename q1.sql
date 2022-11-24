@@ -20,5 +20,13 @@ CREATE VIEW TotalConcertSale AS
         LEFT JOIN SeatPrices sp ON sp.concert_id = c.concert_id
         GROUP BY c.concert_id;
 
+CREATE VIEW TotalConcertSaleNotNull AS
+    SELECT 
+        concert_id,
+        CASE WHEN total IS NULL THEN 0
+        ELSE total
+        END AS "total"
+    FROM TotalConcertSale;
+
 -- OUTPUT
-SELECT * FROM TotalConcertSale;
+SELECT * FROM TotalConcertSaleNotNull;
