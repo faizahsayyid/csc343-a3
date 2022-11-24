@@ -56,6 +56,6 @@ CREATE VIEW TotalPercentageSold AS
 -- OUTPUT
 SELECT s.concert_id, 
     s.total AS "total_sold", 
-    p.percentage AS "percentage_sold" 
+    p.percentage_sold
 FROM TotalConcertSaleNotNull s 
     JOIN TotalPercentageSold p ON s.concert_id = p.concert_id;
