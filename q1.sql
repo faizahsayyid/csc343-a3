@@ -37,13 +37,21 @@ CREATE VIEW TotalTicketCount AS
         JOIN Seat s ON s.section_id = sc.section_id
         GROUP BY c.concert_id;
 
-CREATE VIEW TotalPercentageSold AS
+CREATE VIEW TotalTicketSoldCount AS
     SELECT 
-        t.concert_id, 
-        (count(p.purchase_id) / t.ticket_count) AS "percentage" 
-    FROM Purchase p
-        JOIN TotalTicketCount t ON p.concert_id = t.concert_id
-        GROUP BY t.concert_id;
+        concert_id, 
+        count(purchase_id) AS "sold_count" 
+    FROM Purchase
+        GROUP BY concert_id;
+
+CREATE VIEW TotalPercentageSold AS 
+    SELECT 
+        t.concert_id,
+        CASE WHEN s.sold_count IS NULL THEN 0
+        ELSE s.sold_count / t.ticket_count
+        END AS "percentage_sold"
+    FROM TotalTicketCount t
+        LEFT JOIN TotalTicketSoldCount s ON s.concert_id = t.concert_id;
 
 -- OUTPUT
 SELECT s.concert_id, 
