@@ -49,7 +49,7 @@ CREATE VIEW TotalPercentageSold AS
     SELECT 
         t.concert_id,
         (CASE WHEN s.sold_count IS NULL THEN 0
-        ELSE (s.sold_count::FLOAT / t.ticket_count::FLOAT) * 100
+        ELSE s.sold_count::FLOAT / t.ticket_count::FLOAT
         END) AS "percentage_sold"
     FROM TotalTicketCount t
         LEFT JOIN TotalTicketSoldCount s ON s.concert_id = t.concert_id;
