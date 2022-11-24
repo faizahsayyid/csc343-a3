@@ -31,7 +31,7 @@ CREATE VIEW TotalTicketCount AS
     SELECT c.concert_id, count(seat_id) AS "ticket_count" FROM Concert c
         JOIN Venue v ON v.concert_id = c.concert_id
         JOIN Section sc ON sc.venue_id = v.venue_id
-        JOIN Seat s ON s.section_id = . sc.section_id
+        JOIN Seat s ON s.section_id = sc.section_id
         GROUP BY c.concert_id;
 
 CREATE VIEW TotalPercentageSold AS
