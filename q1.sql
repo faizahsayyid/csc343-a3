@@ -8,7 +8,6 @@ DROP VIEW IF EXISTS
     TotalConcertSale
 CASCADE;
 
-
 -- Define views for your intermediate steps here:
 CREATE VIEW SeatPrices AS 
     SELECT p.concert_id, p.seat_id, sp.price FROM Purchase p 
@@ -28,5 +27,24 @@ CREATE VIEW TotalConcertSaleNotNull AS
         END AS "total"
     FROM TotalConcertSale;
 
+CREATE VIEW TotalTicketCount AS
+    SELECT c.concert_id, count(seat_id) AS "ticket_count" FROM Concert c
+        JOIN Venue v ON v.concert_id = c.concert_id
+        JOIN Section sc ON sc.venue_id = v.venue_id
+        JOIN Seat s ON s.section_id = . sc.section_id
+        GROUP BY c.concert_id;
+
+CREATE VIEW TotalPercentageSold AS
+    SELECT 
+        p.concert_id, 
+        (count(p.purchase_id) / t.ticket_count) AS "percentage" 
+    FROM Purchase p
+        JOIN TotalTicketCount t ON p.concert_id = t.concert_id
+        GROUP BY p.concert_id;
+
 -- OUTPUT
-SELECT * FROM TotalConcertSaleNotNull;
+SELECT s.concert_id, 
+    s.total AS "total_sold", 
+    p.percentage AS "percentage_sold" 
+FROM TotalConcertSaleNotNull s 
+    JOIN TotalPercentageSold p ON s.concert_id = p.concert_id;

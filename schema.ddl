@@ -54,6 +54,7 @@ CREATE TABLE Purchase (
   concert_id integer NOT NULL REFERENCES Concert,
   seat_id  integer  NOT NULL REFERENCES Seat,
   username varchar(255) NOT NULL REFERENCES Customer,
-  datetime timestamp NOT NULL
+  datetime timestamp NOT NULL,
+  CONSTRAINT one_seat_per_person UNIQUE(concert_id, seat_id)
 );
 
