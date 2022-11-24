@@ -5,7 +5,10 @@ SET SEARCH_PATH TO concert;
 
 DROP VIEW IF EXISTS 
     SeatPrices,
-    TotalConcertSale
+    TotalConcertSale,
+    TotalConcertSaleNotNull,
+    TotalTicketCount,
+    TotalPercentageSold
 CASCADE;
 
 -- Define views for your intermediate steps here:
