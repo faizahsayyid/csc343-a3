@@ -13,8 +13,7 @@ CASCADE;
 CREATE VIEW SeatPrices AS 
     SELECT p.concert_id, p.seat_id, sp.price FROM Purchase p 
         JOIN Seat s ON s.seat_id = p.seat_id
-        JOIN SectionPrice sp ON s.section_id = sp.section_id 
-        WHERE p.concert_id = c.concert_id;
+        JOIN SectionPrice sp ON s.section_id = sp.section_id;
 
 CREATE VIEW TotalConcertSale AS 
     SELECT c.concert_id, SUM(sp.price) AS "total" FROM Concert c
