@@ -3,6 +3,10 @@
 
 SET SEARCH_PATH TO concert;
 
+DROP VIEW IF EXISTS 
+    PurchaseCount
+CASCADE;
+
 -- the number of purchases a user has made
 CREATE VIEW PurchaseCount AS 
     SELECT username, COUNT(purchase_id) AS "purchase_count" FROM Purchase
