@@ -54,9 +54,13 @@ CREATE VIEW TotalPercentageSold AS
     FROM TotalTicketCount t
         LEFT JOIN TotalTicketSoldCount s ON s.concert_id = t.concert_id;
 
+CREATE VIEW TotalSaleAndPercentageSold AS
+    SELECT s.concert_id, 
+        s.total AS "total_sold", 
+        p.percentage_sold
+    FROM TotalConcertSaleNotNull s 
+        JOIN TotalPercentageSold p ON s.concert_id = p.concert_id;
+
 -- OUTPUT
-SELECT s.concert_id, 
-    s.total AS "total_sold", 
-    p.percentage_sold
-FROM TotalConcertSaleNotNull s 
-    JOIN TotalPercentageSold p ON s.concert_id = p.concert_id;
+SELECT c.concert_id, c.name, c.datetime, t.total_sold, t.percentage_sold FROM Concert c
+    JOIN TotalSaleAndPercentageSold t ON t.concert_id = c.concert_id;
