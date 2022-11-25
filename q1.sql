@@ -10,19 +10,24 @@ DROP VIEW IF EXISTS
     TotalTicketCount,
     TotalTicketSoldCount,
     TotalPercentageSold,
+    TotalSaleAndPercentageSold
 CASCADE;
 
 -- Define views for your intermediate steps here:
+
+-- the price of each seat sold for a concert
 CREATE VIEW SeatPrices AS 
     SELECT p.concert_id, p.seat_id, sp.price FROM Purchase p 
         JOIN Seat s ON s.seat_id = p.seat_id
         JOIN SectionPrice sp ON s.section_id = sp.section_id;
 
+-- the total ticket sale revenue of a concert
 CREATE VIEW TotalConcertSale AS 
     SELECT c.concert_id, SUM(sp.price) AS "total" FROM Concert c
         LEFT JOIN SeatPrices sp ON sp.concert_id = c.concert_id
         GROUP BY c.concert_id;
 
+-- the total ticket sale revenue of a concert replacing nulls with 0
 CREATE VIEW TotalConcertSaleNotNull AS
     SELECT 
         concert_id,
@@ -31,6 +36,7 @@ CREATE VIEW TotalConcertSaleNotNull AS
         END AS "total"
     FROM TotalConcertSale;
 
+-- the total number of seats in a venue by concert
 CREATE VIEW TotalTicketCount AS
     SELECT c.concert_id, count(seat_id) AS "ticket_count" FROM Concert c
         JOIN Venue v ON v.venue_id = c.venue_id
@@ -38,6 +44,7 @@ CREATE VIEW TotalTicketCount AS
         JOIN Seat s ON s.section_id = sc.section_id
         GROUP BY c.concert_id;
 
+-- the total number of seats sold by concert
 CREATE VIEW TotalTicketSoldCount AS
     SELECT 
         concert_id, 
@@ -45,6 +52,7 @@ CREATE VIEW TotalTicketSoldCount AS
     FROM Purchase
         GROUP BY concert_id;
 
+-- the percentage of seats sold per concert
 CREATE VIEW TotalPercentageSold AS 
     SELECT 
         t.concert_id,
@@ -54,6 +62,7 @@ CREATE VIEW TotalPercentageSold AS
     FROM TotalTicketCount t
         LEFT JOIN TotalTicketSoldCount s ON s.concert_id = t.concert_id;
 
+-- the total ticket sale revenue and the percentage of seats sold per concert
 CREATE VIEW TotalSaleAndPercentageSold AS
     SELECT s.concert_id, 
         s.total AS "total_sold", 
