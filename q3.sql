@@ -7,6 +7,7 @@ DROP VIEW IF EXISTS
     TotalSeats
 CASCADE;
 
+-- the number of seats that are accessible by venue
 CREATE VIEW AccessibleSeats AS 
     SELECT 
         v.venue_id, 
@@ -17,6 +18,7 @@ CREATE VIEW AccessibleSeats AS
         WHERE s.is_accessible
         GROUP BY v.venue_id;
 
+-- the number of seats by venue
 CREATE VIEW TotalSeats AS 
     SELECT v.venue_id, v.name, count(s.seat_id) AS "total_count" FROM Venue v
         JOIN Section sc ON sc.venue_id = v.venue_id
