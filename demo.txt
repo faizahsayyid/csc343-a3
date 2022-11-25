@@ -1,0 +1,82 @@
+csc343h-sayyidfa=> \echo  -------------------- Query 1: -----------------------------------
+-------------------- Query 1: -----------------------------------
+csc343h-sayyidfa=> \echo
+
+csc343h-sayyidfa=> \i q1.sql
+SET
+psql:q1.sql:14: NOTICE:  view "seatprices" does not exist, skipping
+psql:q1.sql:14: NOTICE:  view "totalconcertsale" does not exist, skipping
+psql:q1.sql:14: NOTICE:  view "totalconcertsalenotnull" does not exist, skipping
+psql:q1.sql:14: NOTICE:  view "totalticketcount" does not exist, skipping
+psql:q1.sql:14: NOTICE:  view "totalticketsoldcount" does not exist, skipping
+psql:q1.sql:14: NOTICE:  view "totalpercentagesold" does not exist, skipping
+psql:q1.sql:14: NOTICE:  view "totalsaleandpercentagesold" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+CREATE VIEW
+ concert_id |              name              |      datetime       | total_sold |   percentage_sold    
+------------+--------------------------------+---------------------+------------+----------------------
+          1 | Ron Sexsmith                   | 2022-12-03 07:30:00 |        280 |                 0.04
+          2 | Women's Blues Review           | 2022-11-25 08:00:00 |        718 |                 0.08
+          3 | Mariah Carey - Merry Christmas | 2022-12-09 08:00:00 |       1922 |  0.03333333333333333
+          4 | Mariah Carey - Merry Christmas | 2022-12-11 08:00:00 |          0 |                    0
+          5 | TSO - Elf in Concert           | 2022-12-09 07:30:00 |          0 |                    0
+          6 | TSO - Elf in Concert           | 2022-12-10 02:30:00 |          0 |                    0
+          7 | TSO - Elf in Concert           | 2022-12-10 07:30:00 |        477 | 0.047619047619047616
+(7 rows)
+
+csc343h-sayyidfa=> \echo
+
+csc343h-sayyidfa=> \echo  -------------------- Query 2: -----------------------------------
+-------------------- Query 2: -----------------------------------
+csc343h-sayyidfa=> \echo
+
+csc343h-sayyidfa=> \i q2.sql
+SET
+ owner_id |                        name                         | venues_owned 
+----------+-----------------------------------------------------+--------------
+        2 | Maple Leaf Sports & Entertainment                   |            1
+        1 | The Corporation of Massey Hall and Roy Thomson Hall |            2
+(2 rows)
+
+csc343h-sayyidfa=> \echo
+
+csc343h-sayyidfa=> \echo  -------------------- Query 3: -----------------------------------
+-------------------- Query 3: -----------------------------------
+csc343h-sayyidfa=> \echo
+
+csc343h-sayyidfa=> \i q3.sql
+SET
+psql:q3.sql:8: NOTICE:  view "accessibleseats" does not exist, skipping
+psql:q3.sql:8: NOTICE:  view "totalseats" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+CREATE VIEW
+ venue_id |       name       | accessible_percentage 
+----------+------------------+-----------------------
+        3 | ScotiaBank Arena |    0.3333333333333333
+        2 | Roy Thomson Hall |                     0
+        1 | Massey Hall      |                  0.24
+(3 rows)
+
+csc343h-sayyidfa=> \echo
+
+csc343h-sayyidfa=> \echo  -------------------- Query 4: -----------------------------------
+-------------------- Query 4: -----------------------------------
+csc343h-sayyidfa=> \echo
+
+csc343h-sayyidfa=> \i q4.sql
+SET
+psql:q4.sql:8: NOTICE:  view "purchasecount" does not exist, skipping
+DROP VIEW
+CREATE VIEW
+  username   
+-------------
+ d_targaryen
+ cristonc
+(2 rows)
