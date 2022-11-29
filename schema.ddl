@@ -1,3 +1,19 @@
+-- Could not: The constraint that every venue has at least 10 seats could not
+-- be enforced without assertions or triggers
+
+-- Did not: We enforced all domain specifications that could have been enforced
+-- without assertions or triggers.
+
+-- Extra Constraints: only one person can sit at one seat in a particular section
+-- of a venue for a particular concert
+-- (i.e. two people cant sit in the same spot)
+
+-- Assumptions:
+-- Every seat in a venue is available for every concert
+-- every venue will have at least one seat
+-- seats in a venue are always organized into specifications
+-- Every seat belongs to exactly one section
+
 DROP SCHEMA IF EXISTS concert CASCADE;
 CREATE SCHEMA concert;
 SET search_path TO concert;
@@ -57,4 +73,3 @@ CREATE TABLE Purchase (
   datetime timestamp NOT NULL,
   CONSTRAINT one_seat_per_person UNIQUE(concert_id, seat_id)
 );
-
